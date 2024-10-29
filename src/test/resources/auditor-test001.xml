@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+
+	<auditors>
+		<auditor declaringTypeRegEx=".*" class="com.draiver.core.utility.audit.auditor.StandardAuditor" />
+	</auditors>
+
+
+	<appenders>
+
+		<appender name="InMemoryAuditAppender" class="com.draiver.core.utility.audit.appender.InMemoryAuditAppender" minLevel="DEBUG">
+			<parameters>
+				<param name="maxMessages" value="100" />
+			</parameters>
+		</appender>
+
+	</appenders>
+
+</configuration>

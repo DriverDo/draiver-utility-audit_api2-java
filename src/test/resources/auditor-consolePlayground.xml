@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+
+	<auditors>
+		<auditor declaringTypeRegEx=".*" class="com.draiver.core.utility.audit.auditor.StandardAuditor" />
+	</auditors>
+
+
+	<appenders>
+		
+		<appender name="FileAuditAppender" class="com.draiver.core.utility.audit.appender.FileAuditAppender" minLevel="DEBUG">
+			
+			<parameters>
+				<param name="fileName" value="d:/tmp/jason3.txt" />
+			</parameters>
+			
+		</appender>
+		
+		<appender name="ConsoleAuditAppender" class="com.draiver.core.utility.audit.appender.ConsoleAuditAppender" minLevel="DEBUG">
+			
+			<parameters>
+				<param name="prettyPrint" value="[[RESOLVER]]:{class='com.draiver.core.utility.audit.configuration.Base64ConfigurationParameterResolver' value='dHJ1ZQ=='}" />
+				<!-- <param name="prettyPrint" value="false" /> -->
+			</parameters>
+
+			<filters>
+				<filter class="com.draiver.core.utility.audit.filter.AllowAuditEventFilter">
+					<parameters>
+						<param name="property" value="EventName" />
+						<param name="pattern" value=".*1" />
+					</parameters>
+				</filter>
+			</filters>
+
+			<maskers>
+				<masker class="com.draiver.core.utility.audit.masker.PropertyAuditEventMasker">
+					<parameters>
+						<param name="propertyName" value="Message" />
+						<param name="regExPattern" value="\d{3}" />
+						<param name="replaceWith" value="!!!" />
+					</parameters>
+				</masker>
+			</maskers>
+			
+		</appender>
+		
+		<appender name="FatalAuditAppender" class="com.draiver.core.utility.audit.appender.InMemoryAuditAppender" minLevel="FATAL" />
+		
+	</appenders>
+
+</configuration>
