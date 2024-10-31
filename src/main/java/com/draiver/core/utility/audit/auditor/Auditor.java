@@ -3,6 +3,7 @@ package com.draiver.core.utility.audit.auditor;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 import com.draiver.core.utility.audit.appender.AuditAppender;
 import com.draiver.core.utility.audit.configuration.AuditorConfigurationManager;
@@ -14,6 +15,8 @@ public interface Auditor {
 	CompletableFuture<Void> auditAsync(AuditEvent auditEvent);
 
 	CompletableFuture<Void> auditAsync(AuditEvent auditEvent, EventConfig eventConfig);
+
+	CompletableFuture<Void> auditAsync(AuditEvent auditEvent, EventConfig eventConfig, Executor asyncExecutor);
 
 	CompletableFuture<Void> auditAsync(AuditEvent[] auditEvents);
 

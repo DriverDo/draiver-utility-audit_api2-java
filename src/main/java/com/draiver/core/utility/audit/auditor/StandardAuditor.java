@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 import com.draiver.core.utility.audit.appender.AuditAppender;
 import com.draiver.core.utility.audit.events.AuditEvent;
@@ -65,6 +66,11 @@ public class StandardAuditor extends AuditorBase {
 			audit(auditEvent, eventConfig);
 			return null;
 		});
+	}
+
+	@Override
+	public CompletableFuture<Void> auditAsync(AuditEvent auditEvent, EventConfig eventConfig, Executor asyncExecutor) {
+		return auditAsync(auditEvent, eventConfig);
 	}
 
 	@Override
